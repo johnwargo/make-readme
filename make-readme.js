@@ -10,7 +10,6 @@
 var fs = require('fs'),
   path = require('path');
 
-var endTxt = "ReadMe.md file created by make-readme by [John M. Wargo](http://www.johnwargo.com) - be sure to remove this line from the file";
 var fileName = "readme.md";
 
 //Get the current folder
@@ -26,7 +25,7 @@ if (!fs.existsSync(theFile)) {
   wstream.write("=========\n");
   wstream.write(" \n \n");
   wstream.write("* * *\n");
-  wstream.write(endTxt);
+  wstream.write("ReadMe.md file created by make-readme by [John M. Wargo](http://www.johnwargo.com) - be sure to remove this line from the file");
   //close the file
   wstream.end();
   //All done
