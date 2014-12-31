@@ -10,19 +10,28 @@
 var fs = require('fs'),
   path = require('path');
 
-var eq = "=";
-var stars3 = "* * *";
-var endTxt = "By [John M. Wargo](http://www.johnwargo.com) - if you like and/or use this module, why not pick up [one of my books](http://www.johnwargobooks.com)?";
+var endTxt = "ReadMe.md file created by make-readme by [John M. Wargo](http://www.johnwargo.com) - be sure to remove this line from the file";
+var fileName = "readme.md";
 
 //Get the current folder
 var currFolder = process.cwd();
-console.log("Current folder: %s", currFolder);
+//Calculate the readme file name
+var theFile = path.join(currFolder, fileName);
+//Does the file already exist?
+if (!fs.existsSync(theFile)) {
+  //Create the file
+  var wstream = fs.createWriteStream(theFile);
+  //Write some stuff to the file
+  wstream.write(fileName + "\n");
+  wstream.write("=========\n");
+  wstream.write(" \n \n");
+  wstream.write("* * *\n");
+  wstream.write(endTxt);
+  //close the file
+  wstream.end();
+  //All done
+  console.log("\nreadme.md file created\n");
 
-//Create a new file
-
-//Write some stuff to it
-
-//save the file
-
-//All done
-console.log("\nAll done!\n");
+} else {
+  console.log('\nThe readme.md file already exists in this folder');
+}
