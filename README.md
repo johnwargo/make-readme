@@ -15,7 +15,9 @@ To use the module, open a terminal window, navigate to the folder where you want
 
 	make-readme
 
-That's it, it's that simple. 
+That's it, it's that simple.
+
+The module uses the current folder name as the title for the readme.md file it creates.
 
 * * *
 By [John M. Wargo](http://www.johnwargo.com) - if you like and/or use this module, why not pick up [one of my books](http://www.johnwargobooks.com)?
