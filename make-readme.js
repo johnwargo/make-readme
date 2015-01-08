@@ -13,16 +13,20 @@
 var fs = require('fs'),
   path = require('path');
 
+//The file we'll be creating
 var fileName = "readme.md";
 
 //Get the current folder
 var currFolder = process.cwd();
 //Calculate the readme file name
 var theFile = path.join(currFolder, fileName);
-var theHeading = currFolder.replace(/.+\\(.+)\\[^\\]+$/, '$1');
+//Now figure out the title for the readme file
+//Split the path into multiple parts (using path delimeter)
+var pathParts = currFolder.split(path.sep);
+//Then grab the last entry in the array
+var theHeading = pathParts[pathParts.length-1];
 //Make a line of equal signs that match the lengh of the header
 var theEqualSigns = new Array(theHeading.length + 1).join("=");
-console.log(theHeading);
 
 //Does the file already exist?
 if (!fs.existsSync(theFile)) {
