@@ -26,8 +26,7 @@ var slashN = '\n';
 function launchFile() {
   //Used to build the command string to launch the readme file
   var cmdStr;
-
-  //Used to determine how to launch the readme file   
+  //What OS are we running on?
   if (os.type().indexOf('Win') === 0) {
     //Are we running on Windows? then use start
     cmdStr = 'start ' + fileName;
@@ -73,8 +72,8 @@ if (!fs.existsSync(theFile)) {
   wstream.write(theEqualSigns + slashN);
   //A couple of blank lines
   wstream.write(slashN + slashN);
-  //Horizontal ruls
-  wstream.write("* * *" + slashN);
+  //Horizontal rule
+  wstream.write("* * *" + slashN + slashN);
   //shameless plug
   wstream.write("ReadMe.md file created by make-readme by [John M. Wargo](http://www.johnwargo.com) - be sure to remove this line from the file");
   //close the file
