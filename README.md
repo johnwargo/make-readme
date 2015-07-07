@@ -15,9 +15,21 @@ To use the module, open a terminal window, navigate to the folder where you want
 
 	make-readme
 
-That's it, it's that simple.
+The module will create the readme file and use the project folder as the project title (first heading) in the file. 
 
-The module uses the current folder name as the title for the readme.md file it creates.
+If you want, you can pass in the project name on the command line and the module will use it as the title (first heading) for the readme file:
+
+	make-readme project_title
+
+You can pass in the project title as a string:
+
+	make-readme "My Project Title"
+
+or you can simply pass each word of the title as a separate parameter on the command line and the module will concatenate all of the parameters into a single string:
+
+	make-readme My Project Title
+
+That's it, that's all there is to it. Enjoy!
 
 * * *
 By [John M. Wargo](http://www.johnwargo.com) - if you like and/or use this module, why not pick up [one of my books](http://www.johnwargobooks.com)?

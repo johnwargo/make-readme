@@ -29,3 +29,9 @@ node_modules
 
 # my pub batch file
 pub.cmd
+
+#WebStorm
+.idea
+
+# the project's test folder
+test
