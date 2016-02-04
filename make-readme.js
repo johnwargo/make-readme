@@ -39,7 +39,9 @@ function launchFile() {
     cmdStr = 'start ' + fileName;
   } else {
     //OS X or Linux, use open
-    cmdStr = 'open ./' + fileName;
+    //cmdStr = 'open ./' + fileName;
+    //Added the -e to help this work better on Linux
+    cmdStr = 'open -e ./' + fileName;
   }
   console.log("Launching readme.md");
   var child = exec(cmdStr, function (error, stdout, stderr) {
