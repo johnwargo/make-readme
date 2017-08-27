@@ -59,17 +59,15 @@ function launchFile() {
 var currFolder = process.cwd();
 //Calculate the readme file name, always use the current folder
 var theFile = path.join(currFolder, fileName);
+
 //Does the file already exist?
 if (!fs.existsSync(theFile)) {
   //Sort out the command line arguments
   var userArgs;
-  //Is the first item 'node' or does it contain node.exe? Then we're testing!
-  //Yes, I could simply look for the word 'node' in the first parameter, but these
-  //are two specific cases I found in my testing, so I coded specifically to them.
-  if (process.argv[0].toLowerCase() === 'node' || process.argv[0].indexOf('node.exe') > -1) {
-    //whack the first two items off of the list of arguments
-    //This removes the node entry as well as the JavaScript file name (the
-    //node program we're running)
+  // Does the first command line item contain 'node'? Then we're testing!
+  // if (process.argv[0].toLowerCase() === 'node' || process.argv[0].indexOf('node.exe') > -1) {
+  if (process.argv[0].indexOf('node') > -1) {
+    //What the first two items from the argument list (node and the .js file)
     userArgs = process.argv.slice(2);
   } else {
     //whack the first item off of the list of arguments
@@ -84,8 +82,16 @@ if (!fs.existsSync(theFile)) {
     theHeading = userArgs.join(' ');
   } else {
     //We didn't get anything on the command line, so just use the folder name
-    //Grab the last entry in the array (the current folder name)
-    theHeading = path.basename(currFolder).toUpperCase();
+    if (os.type().indexOf('Win') === 0) {
+      //basename returns the last part of the folder path on Windows
+      theHeading = path.basename(currFolder).toUpperCase();
+    } else {
+      //basename returns the whole folder path on Posix OS, so we have to treat it differently
+      //get the path as an array
+      var pathParts = path.basename(currFolder).split(path.sep);
+      //Grab the last entry in the array (the current folder name)
+      theHeading = pathParts.slice(-1)[0].toUpperCase();
+    }
   }
   //Now create the file
   var wstream = fs.createWriteStream(theFile);
