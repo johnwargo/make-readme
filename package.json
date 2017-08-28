@@ -1,6 +1,6 @@
 {
   "name": "make-readme",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Node module that creates a 'blank' readme file in the current folder",
   "main": "make-readme.js",
   "bin": {
