@@ -103,7 +103,7 @@ if (!fs.existsSync(theFile)) {
   });
   //Write some stuff to the file
   //First the name of the folder we're in
-  wstream.write('#' + theHeading + slashN);
+  wstream.write('# ' + theHeading + slashN);
   //A couple of blank lines
   wstream.write(slashN + slashN);
   //Horizontal rule
