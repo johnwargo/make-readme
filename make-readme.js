@@ -27,9 +27,16 @@ var fileName = "readme.md";
 //Used to write a carriage return to the output file
 var slashN = '\n';
 
-//=================================
-// Launch file
-//=================================
+function getLastPathItem(thePath, theSep) {
+  console.log('Entering getLastPathItem');
+  console.log('Separator: ' + theSep);
+  //Start by making an array of path parts, separated by theSep
+  var pathParts = thePath.split(theSep);
+  console.dir(pathParts);
+  //Grab the last entry in the array
+  return pathParts.slice(-1)[0];
+}
+
 function launchFile() {
   //Used to build the command string to launch the readme file
   var cmdStr;
@@ -65,9 +72,11 @@ if (!fs.existsSync(theFile)) {
   //Sort out the command line arguments
   var userArgs;
   // Does the first command line item contain 'node'? Then we're testing!
-  // if (process.argv[0].toLowerCase() === 'node' || process.argv[0].indexOf('node.exe') > -1) {
-  if (process.argv[0].indexOf('node') > -1) {
-    //What the first two items from the argument list (node and the .js file)
+  //v0.0.17 if (process.argv[0].toLowerCase() === 'node' || process.argv[0].indexOf('node.exe') > -1) {
+  //v0.0.18 if (process.argv[0].indexOf('node') > -1) {
+  //v0.0.19 Pull the last item off the first argument, does it start with 'node'?
+  if (getLastPathItem(process.argv[0], path.sep).toLowerCase().indexOf('node') === 0) {
+    //Whack the first two items from the argument list (node and the .js file)
     userArgs = process.argv.slice(2);
   } else {
     //whack the first item off of the list of arguments
@@ -81,16 +90,12 @@ if (!fs.existsSync(theFile)) {
     //concatenate the parameters into a single string
     theHeading = userArgs.join(' ');
   } else {
-    //We didn't get anything on the command line, so just use the folder name
+    //We didn't get anything on the command line, so just use the last item on the current path
     if (os.type().indexOf('Win') === 0) {
       //basename returns the last part of the folder path on Windows
       theHeading = path.basename(currFolder).toUpperCase();
     } else {
-      //basename returns the whole folder path on Posix OS, so we have to treat it differently
-      //get the path as an array
-      var pathParts = path.basename(currFolder).split(path.sep);
-      //Grab the last entry in the array (the current folder name)
-      theHeading = pathParts.slice(-1)[0].toUpperCase();
+      theHeading = getLastPathItem(path.basename(currFolder), path.sep).toUpperCase();
     }
   }
   //Now create the file
