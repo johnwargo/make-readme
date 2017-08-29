@@ -35,3 +35,5 @@ pub.cmd
 
 # the project's test folder
 test
+
+.DS_Store

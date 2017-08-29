@@ -28,11 +28,9 @@ var fileName = "readme.md";
 var slashN = '\n';
 
 function getLastPathItem(thePath, theSep) {
-  console.log('Entering getLastPathItem');
-  console.log('Separator: ' + theSep);
+  //Pull the last item off of a file path using theSep
   //Start by making an array of path parts, separated by theSep
   var pathParts = thePath.split(theSep);
-  console.dir(pathParts);
   //Grab the last entry in the array
   return pathParts.slice(-1)[0];
 }
