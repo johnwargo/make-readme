@@ -1,7 +1,5 @@
 #!/usr/bin/env node
-
 /* jshint node: true, strict: true, undef: true, unused: true */
-
 //========================================================================
 // Make-Readme
 //
@@ -17,8 +15,6 @@ var exec = require('child_process').exec,
   os = require('os'),
   path = require('path');
 
-var theHeading;
-
 //=================================
 // some variables
 //=================================
@@ -26,6 +22,7 @@ var theHeading;
 var fileName = "readme.md";
 //Used to write a carriage return to the output file
 var slashN = '\n';
+var theHeading;
 
 function getLastPathItem(thePath, theSep) {
   //Pull the last item off of a file path using theSep
